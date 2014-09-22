@@ -20,17 +20,27 @@ void setup() {
 
 void draw() {
   background(100);
+  drawBackground();
   drawTicker();
   if (frameCount % 1 == 0) {
     makeStock();
   }
   makeLines();
   updateStock();
-  frame.setLocation(centerScreenX,centerScreenY + stockValue.change);
+  frame.setLocation(centerScreenX,centerScreenY - stockValue.change);
   drawSeismo();
   //drawStock(); 
 }
 
+void drawBackground() {
+    for (int x = 0; x < width; x += width/10) {
+        stroke(127);
+        line(x,0, x,height);
+    }
+    for (int y = 0; y < height; y += height/10) {
+        line(0, y, width, y);
+    }
+}   
 void mousePressed() {
   stockValue.y = height/2;
 }
